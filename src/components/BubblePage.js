@@ -40,6 +40,13 @@ const BubblePage = () => {
   };
 
   const deleteColor = (colorToDelete) => {
+    axiosWithAuth().delete(`/colors/${colorToDelete.id}`)
+      .then(res => {
+	const newColors = colors.filter(color => color.id !== JSON.parse(res.data));
+	setColors(newColors);
+	// I feel like I should put another axios call in here in the event that we get out of synch with the server
+      })
+      .catch(alert);
   };
 
   return (
