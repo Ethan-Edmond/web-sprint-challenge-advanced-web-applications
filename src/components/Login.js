@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 const Login = () => {
   const [formVal, setFormVal] = useState({
-    user: '',
+    username: '',
     password: ''		// 
   });
 
+  const [error, setError] = useState('');
+  
   const handleChange = (e) => {
     setFormVal({
       ...formVal,
@@ -15,12 +18,19 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formVal);
+    axios.post('http://localhost:5000/api/login', formVal)
+      .then(res => {
+        console.log(res.data.payload);
+	setError('');
+      })
+      .catch(err => {
+        setError('Username or Password are incorrect');
+      });
   };
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  const error = "";
+
   //replace with error state
 
   return (
@@ -29,13 +39,15 @@ const Login = () => {
       <div data-testid="loginForm" className="login-form">
 	<form onSubmit={handleSubmit}>
 	  <input
+	    data-testid='username'	  
 	    onChange={handleChange}
-	    value={formVal.user}
+	    value={formVal.username}
 	    type='text'
-	    name='user'
+	    name='username'
 	    placeholder='Username'
 	  />
 	  <input
+	    data-testid='password'
 	    onChange={handleChange}
 	    value={formVal.password}
 	    type='password'
