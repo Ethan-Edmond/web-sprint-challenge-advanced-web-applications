@@ -20,8 +20,8 @@ const Login = () => {
     e.preventDefault();
     axios.post('http://localhost:5000/api/login', formVal)
       .then(res => {
-        console.log(res.data.payload);
 	setError('');
+	window.localStorage.setItem('token', res.data.payload);
       })
       .catch(err => {
         setError('Username or Password are incorrect');
