@@ -41,6 +41,7 @@ const Login = (props) => {
       <div data-testid="loginForm" className="login-form">
 	<form onSubmit={handleSubmit}>
 	  <input
+	    id='username'
 	    data-testid='username'	  
 	    onChange={handleChange}
 	    value={formVal.username}
@@ -49,6 +50,7 @@ const Login = (props) => {
 	    placeholder='Username'
 	  />
 	  <input
+	    id='password'
 	    data-testid='password'
 	    onChange={handleChange}
 	    value={formVal.password}
