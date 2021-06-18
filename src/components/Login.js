@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const Login = () => {
+const Login = (props) => {
+  const { push } = props.history;
   const [formVal, setFormVal] = useState({
     username: '',
     password: ''		// 
@@ -22,6 +23,7 @@ const Login = () => {
       .then(res => {
 	setError('');
 	window.localStorage.setItem('token', res.data.payload);
+	push('/bubbles');
       })
       .catch(err => {
         setError('Username or Password are incorrect');
