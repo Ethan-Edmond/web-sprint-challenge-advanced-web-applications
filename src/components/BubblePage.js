@@ -5,16 +5,38 @@ import ColorList from "./ColorList";
 
 // import { editColorService, deleteColorService } from '../services/colorServices';
 import fetchColorService from '../services/fetchColorService';
+import axiosWithAuth from '../helpers/axiosWithAuth';
 
 const BubblePage = () => {
   const [colors, setColors] = useState([]);
   const [editing, setEditing] = useState(false);
+
+  useEffect(() => {
+    fetchColorService()
+      .then(res => {
+        setColors(res.data)
+      })
+      .catch(alert);
+  },[]);
 
   const toggleEdit = (value) => {
     setEditing(value);
   };
 
   const saveEdit = (editColor) => {
+    console.log(editColor);
+    axiosWithAuth().put(`/colors/${editColor.id}`, editColor)
+      .then(res => {
+	const newColors = colors.map(color => {
+	  if (color.id === editColor.id){
+	    return editColor
+	  } else {
+	    return color
+	  }
+	});
+	setColors(newColors);
+      })
+      .catch(alert);
   };
 
   const deleteColor = (colorToDelete) => {
