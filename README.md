@@ -46,8 +46,10 @@ Your finished project must include all of the following requirements. **Unlike o
 * [x] Construct an http request that retrieves an auth token from the server when the username `Lambda` and the password `School` is passed into the request.
 * [x] Save the token to localStorage.
 * [x] Build a `axiosWithAuth` module within the helpers folder to create an instance of axios with the authentication header.
-* [ ] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
+* [x] Build a `PrivateRoute` component within the components folder and use it to protect the route that renders the `BubblesPage` component.
 * [ ] In `App.js`, build the backend to the logout button. When pressed, send an http request to the logout endpoint and remove the authentication token from localStorage.
+
+There is no logout endpoint
 
 #### Consuming the API
 > *Add in the http requests and state changes needed to connect our api to the web application. Consider the effect of authentication on your api requests.*
